@@ -1,6 +1,8 @@
 # ITP4113_Code
 
-This repository is use to create web on gcp with Kubernetes Engine.
+This repository is use to create web on Docker or gcp with Kubernetes Engine.
+
+# For Kubernetes
 
 ## One Line command deploy
 
