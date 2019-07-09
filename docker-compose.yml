@@ -14,7 +14,7 @@ services:
       SECRET_KEY: my-secret-key
       MAIL_SERVER: mailhog
       MAIL_PORT: 1025
-      DATABASE_URL: mysql+pymysql://web:DHt3WVsPC8722dBQ@web.cctm0icq1nic.ap-southeast-1.rds.amazonaws.com:3306/web
+      DATABASE_URL: mysql+pymysql://web:PASSWORD@10.0.0.0:3306/web
     networks:
       - webnet
 
