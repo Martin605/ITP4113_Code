@@ -1,0 +1,52 @@
+version: "3"
+services:
+  web:
+    image: martin605/web
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+    ports:
+      - 5000:5000
+    environment:
+      MYSQL_ROOT_PASSWORD: DHt3WVsPC8722dBQ
+      SECRET_KEY: my-secret-key
+      MAIL_SERVER: mailhog
+      MAIL_PORT: 1025
+      DATABASE_URL: mysql+pymysql://web:DHt3WVsPC8722dBQ@web.cctm0icq1nic.ap-southeast-1.rds.amazonaws.com:3306/web
+    networks:
+      - webnet
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - 8081:8080
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - webnet
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - 1025:1025
+      - 8025:8025
+    networks:
+      - webnet
+
+networks:
+  webnet:

@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose --file docker-compose.yml convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mailhog
+  name: mailhog
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mailhog
+    spec:
+      containers:
+      - image: mailhog/mailhog:v1.0.0
+        name: mailhog
+        ports:
+        - containerPort: 1025
+        - containerPort: 8025
+        resources: {}
+      restartPolicy: Always
+status: {}
