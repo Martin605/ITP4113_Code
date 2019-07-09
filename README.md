@@ -2,6 +2,19 @@
 
 This repository is use to create web on Docker or gcp with Kubernetes Engine.
 
+# Docker
+## Setup
+>Please check  you Docker is installed
+
+    git clone https://github.com/Martin605/ITP4113_Code.git
+    docker pull martin605/web
+    sudo docker swarm init
+    docker stack deploy --compose-file  ./ITP4113_Code/docker-compose.yml  webstack
+    docker stack services webstack
+
+## Clean up
+    sudo docker stack rm webstack
+    sudo docker swarm leave --force
 # For Kubernetes
 
 ## One Line command deploy
